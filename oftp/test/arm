@@ -1,0 +1,20 @@
+PROGRAM=server-arm client-arm
+CFLAGS= -g -Wall -L /armtools/lib/ -lssl -lcrypto
+CC= arm-linux-gcc
+
+
+all:$(PROGRAM)
+	
+server-arm: ftpserver.o  serv_client.o common.o
+	$(CC) ${CFLAGS} -o server-arm ftpserver.o serv_client.o common.o
+
+client-arm: ftpclient.o client_process.o  common.o
+	$(CC) -o client-arm ftpclient.o client_process.o common.o
+
+.c.o:
+	$(CC) $(CFLAGS) -c $^ -o $@
+
+clean:
+	rm -f *.o
+	rm -f $(PROGRAM)
+
