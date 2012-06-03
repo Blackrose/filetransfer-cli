@@ -1,3 +1,5 @@
 /document
 /certificate
 info.db3
+.*.swp
+src/.*.swp
